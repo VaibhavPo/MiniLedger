@@ -40,7 +40,7 @@ export async function registerUser(name: string, identifier: string) {
 
   // Generate and save OTP
   // const otp = generateOtp();
-  const otp = 123987
+  const otp = '123987'
   await saveOtp(identifier, otp);
 
   // Mock send OTP to console
