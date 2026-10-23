@@ -1,17 +1,31 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { colors } from './colors';
 
+export const fonts = {
+  regular: Platform.select({ ios: 'PlusJakartaSans-Regular', android: 'PlusJakartaSans-Regular', default: 'PlusJakartaSans-Regular' }),
+  medium: Platform.select({ ios: 'PlusJakartaSans-Medium', android: 'PlusJakartaSans-Medium', default: 'PlusJakartaSans-Medium' }),
+  semiBold: Platform.select({ ios: 'PlusJakartaSans-SemiBold', android: 'PlusJakartaSans-SemiBold', default: 'PlusJakartaSans-SemiBold' }),
+  bold: Platform.select({ ios: 'PlusJakartaSans-Bold', android: 'PlusJakartaSans-Bold', default: 'PlusJakartaSans-Bold' }),
+  extraBold: Platform.select({ ios: 'PlusJakartaSans-ExtraBold', android: 'PlusJakartaSans-ExtraBold', default: 'PlusJakartaSans-ExtraBold' }),
+};
+
 export const typography = {
-  xs: 12,
-  sm: 14,
-  base: 16,
-  lg: 18,
+  fontFamily: fonts.regular,
+  fontFamilyMedium: fonts.medium,
+  fontFamilySemiBold: fonts.semiBold,
+  fontFamilyBold: fonts.bold,
+  fontFamilyExtraBold: fonts.extraBold,
+  xs: 11,
+  sm: 13,
+  base: 15,
+  lg: 17,
   xl: 20,
   xxl: 24,
   fontRegular: '400' as const,
   fontMedium: '500' as const,
   fontSemiBold: '600' as const,
   fontBold: '700' as const,
+  fontHeavy: '800' as const,
 };
 
 export const commonStyles = StyleSheet.create({

@@ -16,37 +16,32 @@ export interface VerifyOtpResponse {
 }
 
 export const authService = {
-  async login(identifier: string): Promise<string> {
-    try {
-      const res = await apiRequest<{ success: boolean; data: { message: string } }>(
-        '/auth/login',
-        {
-          method: 'POST',
-          body: JSON.stringify({ identifier }),
-        }
-      );
-      return res.data.message;
-    } catch (err: any) {
-      // If user doesn't exist yet, auto-register to generate OTP
-      if (err.message && err.message.includes('No account found')) {
-        const name = identifier.split('@')[0] || 'User';
-        const regRes = await apiRequest<{ success: boolean; data: { message: string } }>(
-          '/auth/register',
-          {
-            method: 'POST',
-            body: JSON.stringify({ name, identifier }),
-          }
-        );
-        return regRes.data.message;
+  async register(name: string, identifier: string): Promise<string> {
+    const res = await apiRequest<{ success: boolean; data: { message: string } }>(
+      '/auth/register',
+      {
+        method: 'POST',
+        body: JSON.stringify({ name: name.trim(), identifier: identifier.trim() }),
       }
-      throw err;
-    }
+    );
+    return res.data.message;
+  },
+
+  async login(identifier: string): Promise<string> {
+    const res = await apiRequest<{ success: boolean; data: { message: string } }>(
+      '/auth/login',
+      {
+        method: 'POST',
+        body: JSON.stringify({ identifier: identifier.trim() }),
+      }
+    );
+    return res.data.message;
   },
 
   async verifyOtp(identifier: string, otp: string): Promise<{ token: string; user: User }> {
     const res = await apiRequest<VerifyOtpResponse>('/auth/verify-otp', {
       method: 'POST',
-      body: JSON.stringify({ identifier, otp }),
+      body: JSON.stringify({ identifier: identifier.trim(), otp: otp.trim() }),
     });
 
     setAuthToken(res.data.token);
