@@ -39,7 +39,8 @@ export async function registerUser(name: string, identifier: string) {
   const newUser: User = insertResult.rows[0];
 
   // Generate and save OTP
-  const otp = generateOtp();
+  // const otp = generateOtp();
+  const otp = 123987
   await saveOtp(identifier, otp);
 
   // Mock send OTP to console
