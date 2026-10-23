@@ -9,6 +9,10 @@ export const pool = new Pool({
   user: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_NAME || 'miniledger',
+    // Add SSL configuration:
+  ssl: {
+    rejectUnauthorized: false, // Required for most managed DBs when not providing CA certificates directly
+  },
 });
 
 // Simple wrapper function to execute queries
