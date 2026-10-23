@@ -15,7 +15,7 @@
 
 If you just want to test or demo the mobile app directly on your Android device without compiling the source code:
 
-> 📦 **[Download Latest Android Debug APK (Google Drive Placeholder)](https://drive.google.com/your-debug-apk-link-placeholder-here)**  
+> 📦 **[Download Latest Android Debug APK (Google Drive Placeholder)]([https://drive.google.com/your-debug-apk-link-placeholder-here](https://drive.google.com/drive/folders/1hLevD2pQsS96VjF0d7R171CMkcGNsLgt?usp=sharing))**  
 > *(Replace the URL above with your actual Google Drive or GitHub Release shareable link)*
 
 ---
