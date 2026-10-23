@@ -1,0 +1,74 @@
+### Variables
+@baseUrl = http://localhost:5000/api
+@authToken = YOUR_JWT_TOKEN_HERE
+
+### 1. Root Health Check
+GET http://localhost:5000/
+Content-Type: application/json
+
+### 2. User Registration (Mocks OTP to console logs)
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Vaibhav",
+  "identifier": "vaibhav@example.com"
+}
+
+### 3. User Login (Mocks OTP to console logs)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "identifier": "vaibhav@example.com"
+}
+
+### 4. Verify OTP (Copy the 6-digit code logged to server console)
+POST {{baseUrl}}/auth/verify-otp
+Content-Type: application/json
+
+{
+  "identifier": "vaibhav@example.com",
+  "otp": "123456"
+}
+
+### 5. Add Loan Entry (friend name, amount, due date)
+POST {{baseUrl}}/loans
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "friend_name": "Rahul Sharma",
+  "amount": 2500.00,
+  "due_date": "2026-11-15",
+  "notes": "Emergency loan for car repair"
+}
+
+### 6. Add Another Loan Entry (Overdue Example for summary)
+POST {{baseUrl}}/loans
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "friend_name": "Amit Kumar",
+  "amount": 1000.00,
+  "due_date": "2026-09-01",
+  "notes": "Book purchase"
+}
+
+### 7. Get Loan Summary (total lent, total repaid, overdue amount)
+GET {{baseUrl}}/loans/summary
+Authorization: Bearer {{authToken}}
+
+### 8. List All User Loans
+GET {{baseUrl}}/loans
+Authorization: Bearer {{authToken}}
+
+### 9. Record Repayment Towards a Loan
+POST {{baseUrl}}/loans/1/repay
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "amount": 1500.00
+}
